@@ -9,9 +9,8 @@ public class Ficheros {
     //C:\Users\criis\Documents\ASIGNATURAS\PROGRAMACION\workspace\introduccionProgramacion\estudioFicheros
         System.out.println("-----------Estudio Ficheros-----------");
         File fichero, directorio;
-        String ruta = "C:\\Users\\criis\\Documents\\ASIGNATURAS\\PROGRAMACION\\workspace\\introduccionProgramacion\\estudioFicheros\\Ficheros\\";
         //Creacion directorio;
-        directorio = new File(ruta);
+        directorio = new File("Ficheros");
         
         boolean exito = directorio.mkdir();
 
@@ -26,7 +25,7 @@ public class Ficheros {
 
         // crear fichero
         try {
-            fichero = new File(ruta + "elMensajeSecreto.txt");
+            fichero = new File("Ficheros\\mensajeSecreto.txt");
             exito = fichero.createNewFile();
 
             if (exito) System.out.println("Fichero creado satisfactoriamente.");

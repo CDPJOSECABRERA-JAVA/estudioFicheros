@@ -11,11 +11,9 @@ public class MensajeSecreto {
             22,7,3,-38,5,98,9,3
         };
 
-        String ruta = "C:\\Users\\criis\\Documents\\ASIGNATURAS\\PROGRAMACION\\workspace\\introduccionProgramacion\\estudioFicheros\\Ficheros\\";
-
         
         //CREAR Y COMPROBAR SI EL ARCHIVO EXISTE
-        File archivo = new File(ruta + "mensajeSecreto.txt");
+        File archivo = new File("Ficheros\\mensajeSecreto.txt");
 
         try {
             boolean creado = archivo.createNewFile();
