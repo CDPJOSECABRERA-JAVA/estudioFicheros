@@ -1,11 +1,14 @@
+import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import ejercicios.MensajeSecreto;
 import estudioFicheros.Ficheros;
 import flujoDatos.*;
 
 public class Main {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args){
         
         // E S T U D I O  F L U J O  D E  D A T O S
         //FlujoDatos flujo = new FlujoDatos();
@@ -34,5 +37,8 @@ public class Main {
 
         Ficheros ficheros = new Ficheros();
         
+        MensajeSecreto mensajeSecreto = new MensajeSecreto();
+
+
     }
 }

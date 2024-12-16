@@ -9,9 +9,10 @@ public class Ficheros {
     //C:\Users\criis\Documents\ASIGNATURAS\PROGRAMACION\workspace\introduccionProgramacion\estudioFicheros
         System.out.println("-----------Estudio Ficheros-----------");
         File fichero, directorio;
-
+        String ruta = "C:\\Users\\criis\\Documents\\ASIGNATURAS\\PROGRAMACION\\workspace\\introduccionProgramacion\\estudioFicheros\\Ficheros\\";
         //Creacion directorio;
-        directorio = new File("C:\\Users\\criis\\Documents\\ASIGNATURAS\\PROGRAMACION\\workspace\\introduccionProgramacion\\estudioFicheros\\Ficheros");
+        directorio = new File(ruta);
+        
         boolean exito = directorio.mkdir();
 
         if (exito) System.out.println("Directorio creado con exito");
@@ -21,19 +22,17 @@ public class Ficheros {
 
         if (directorio.isDirectory()) {
             System.out.println("Si es un directorio.");
-        }
-
-        String ruta = "C:\\Users\\criis\\Documents\\ASIGNATURAS\\PROGRAMACION\\workspace\\introduccionProgramacion\\estudioFicheros\\Ficheros\\";
+        };
 
         // crear fichero
-        fichero = new File(ruta + "prueba.txt");
         try {
+            fichero = new File(ruta + "elMensajeSecreto.txt");
             exito = fichero.createNewFile();
+
             if (exito) System.out.println("Fichero creado satisfactoriamente.");
             else System.out.println("No se ha creado o ya existe");
 
-            fichero = new File("alumnos.txt");
-            fichero.createNewFile();
+        /* 
             System.out.println("Nombre: " + fichero.getName());
             System.out.println("Path: " + fichero.getPath());
             System.out.println("Parent: " + fichero.getParent());
@@ -41,9 +40,9 @@ public class Ficheros {
             System.out.println("Modificado: " + fichero.lastModified());
             System.out.println("Path: " + fichero.getPath());
             System.out.println(" " + new Date(fichero.lastModified()));
-
+        */
         } catch (Exception e) {
-            
+            System.out.println("Error");
         }
     }
 
