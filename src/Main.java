@@ -9,7 +9,6 @@ import flujoDatos.*;
 
 public class Main {
     public static void main(String[] args){
-        
         // E S T U D I O  F L U J O  D E  D A T O S
         //FlujoDatos flujo = new FlujoDatos();
 
@@ -35,7 +34,7 @@ public class Main {
         }
         */
 
-        Ficheros ficheros = new Ficheros();
+        //Ficheros ficheros = new Ficheros();
         
         MensajeSecreto mensajeSecreto = new MensajeSecreto();
 

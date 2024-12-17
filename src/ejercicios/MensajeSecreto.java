@@ -1,15 +1,14 @@
 package ejercicios;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
 public class MensajeSecreto {
     public MensajeSecreto(){
-        int[] numsEntrada = {5,2,5,-10,12,194,7,22,-11,13,197,5,40,14,-13,9,222,20,13,12,-77,
-            7,1,-34,7,-7,26,99,24,777,1,214,9,9,1,98,2,26,49,15,7,8,26,25,13,100,26,77,14,200,
-            22,7,3,-38,5,98,9,3
-        };
+
 
         
         //CREAR Y COMPROBAR SI EL ARCHIVO EXISTE
@@ -24,16 +23,40 @@ public class MensajeSecreto {
             System.out.println("Error.");
         }
 
-        //RELLENAR EL FICHERO:
 
-            escribirFichero(numsEntrada, archivo);
+        
+        try  {
+            leerFichero(archivo);
+            
+        } catch (IOException e) {
+            System.out.println("error");
+        }
 
         
 
     }
 
     
-    
+    public static void leerFichero(File f) throws IOException{
+        FileReader fr;
+        BufferedReader br;
+
+
+        fr = new FileReader(f);
+        br = new BufferedReader(fr);
+        
+        //primera linea (cantidad de palabras)
+        int cantidadPalabras = Integer.parseInt(br.readLine());
+
+        for (int i = 0; i <= cantidadPalabras; i++) {
+            System.out.println(br.readLine());
+        }
+
+        
+
+    }
+
+    /* 
     public static void escribirFichero(int[] numsEntrada, File archivo){
         int cont = 0;
         archivo.delete();
@@ -46,8 +69,7 @@ public class MensajeSecreto {
             }
 
         } while (cont != numsEntrada.length);
-
-
-
     }
+    */
+    
 }

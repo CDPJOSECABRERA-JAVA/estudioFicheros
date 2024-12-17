@@ -1,6 +1,9 @@
 package estudioFicheros;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Date;
 
 public class Ficheros {
@@ -11,11 +14,8 @@ public class Ficheros {
         File fichero, directorio;
         //Creacion directorio;
         directorio = new File("Ficheros");
-        
-        boolean exito = directorio.mkdir();
+        if (!directorio.exists()) directorio.mkdir();
 
-        if (exito) System.out.println("Directorio creado con exito");
-        else System.out.println("No se ha creado el directorio o ya existe.");
 
         //Saber si es un directorio
 
@@ -24,12 +24,26 @@ public class Ficheros {
         };
 
         // crear fichero
+        File f = new File("fichero.txt");
         try {
-            fichero = new File("Ficheros\\mensajeSecreto.txt");
-            exito = fichero.createNewFile();
+            if (!f.exists()) f.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-            if (exito) System.out.println("Fichero creado satisfactoriamente.");
-            else System.out.println("No se ha creado o ya existe");
+        FileReader fr;
+        BufferedReader br;
+
+        try {
+           fr = new FileReader(f);
+           br = new BufferedReader(fr);
+           System.out.println(br.readLine());
+           System.out.println(br.readLine());
+           System.out.println(br.readLine());
+           System.out.println(br.readLine());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         /* 
             System.out.println("Nombre: " + fichero.getName());
@@ -40,9 +54,6 @@ public class Ficheros {
             System.out.println("Path: " + fichero.getPath());
             System.out.println(" " + new Date(fichero.lastModified()));
         */
-        } catch (Exception e) {
-            System.out.println("Error");
-        }
     }
 
     
