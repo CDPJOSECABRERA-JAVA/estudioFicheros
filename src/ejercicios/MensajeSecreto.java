@@ -2,6 +2,7 @@ package ejercicios;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -9,52 +10,62 @@ import java.io.IOException;
 public class MensajeSecreto {
     public MensajeSecreto(){
 
-
-        
         //CREAR Y COMPROBAR SI EL ARCHIVO EXISTE
         File archivo = new File("Ficheros\\mensajeSecreto.txt");
 
         try {
-            boolean creado = archivo.createNewFile();
 
-            if (creado) System.out.println("El archivo ha sido creado satisfactoriamente");
-            else System.out.println("El archivo no ha sido creado o ya existe.");
+            if (archivo.exists()) {
+                System.out.println("El archivo ya existe.");
+            }else{
+                archivo.createNewFile();
+                System.out.println("Archivo creado correctamente.");
+            }
         } catch (IOException e) {
-            System.out.println("Error.");
+            System.out.println("Ha ocurrido un error inesperado.");
+            System.out.println("Saliendo...");
+            System.exit(1);
         }
 
+        //DECLARACION DE VARIABLES
+        String[] alfabeto = {"a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"};
+        int numeroDePalabras =0;
+        int longitudPalabra = 0;
+        int posPalabra = 0;
+        int relatividad = 0;
+        String fraseDesencriptada = "";
+        String palabra = "";
+ 
+        // DESENCRIPTACION DEL FICHERO
+        try (FileReader fr = new FileReader(archivo); BufferedReader br = new BufferedReader(fr)) {
+            
+            numeroDePalabras = Integer.parseInt(br.readLine());
 
-        
-        try  {
-            leerFichero(archivo);
+            for (int i = 0; i < numeroDePalabras; i++) {
+                longitudPalabra = Integer.parseInt(br.readLine());
+                for (int j = 0; j < longitudPalabra; j++) {
+                    posPalabra = Integer.parseInt(br.readLine());
+                    relatividad = Integer.parseInt(br.readLine());
+                    
+                    if (relatividad%2 == 0) palabra += alfabeto[posPalabra-1];
+                    else palabra += alfabeto[alfabeto.length - posPalabra];
+                }
+                    fraseDesencriptada += palabra;
+                    fraseDesencriptada += " ";
+
+                    palabra = "";
+            }
+            
             
         } catch (IOException e) {
-            System.out.println("error");
+            System.out.println("Ha ocurrido un error inesperado.");
+            System.out.println("Saliendo...");
+            System.exit(1);
         }
 
-        
-
+        System.out.println(fraseDesencriptada);
     }
 
-    
-    public static void leerFichero(File f) throws IOException{
-        FileReader fr;
-        BufferedReader br;
-
-
-        fr = new FileReader(f);
-        br = new BufferedReader(fr);
-        
-        //primera linea (cantidad de palabras)
-        int cantidadPalabras = Integer.parseInt(br.readLine());
-
-        for (int i = 0; i <= cantidadPalabras; i++) {
-            System.out.println(br.readLine());
-        }
-
-        
-
-    }
 
     /* 
     public static void escribirFichero(int[] numsEntrada, File archivo){
