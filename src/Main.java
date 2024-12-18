@@ -3,6 +3,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import ejercicios.FicheroNotasAlumnos;
 import ejercicios.MensajeSecreto;
 import estudioFicheros.Ficheros;
 import flujoDatos.*;
@@ -36,7 +37,8 @@ public class Main {
 
         //Ficheros ficheros = new Ficheros();
         
-        MensajeSecreto mensajeSecreto = new MensajeSecreto();
+        //MensajeSecreto mensajeSecreto = new MensajeSecreto();
+        FicheroNotasAlumnos ficheroNotasAlumnos = new FicheroNotasAlumnos();
 
 
     }

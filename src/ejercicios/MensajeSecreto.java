@@ -53,7 +53,7 @@ public class MensajeSecreto {
                     fraseDesencriptada += palabra;
                     fraseDesencriptada += " ";
 
-                    palabra = "";
+                    palabra = ""; 
             }
             
             
