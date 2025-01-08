@@ -26,25 +26,22 @@ public class FicheroNotasAlumnos {
 
         //LEER FICHERO
         String alumnosStr ="", asignaturasStr = "", linea = "";
+        String[] fila = new String[0];
         String[] alumnos = new String[0], asignaturas = new String[0];
-        String[][] notas = new String[0][0];
-        int i = 0;
-        boolean vacio = false;
+        int[][] notas = new int[0][0];
 
-        try(FileReader fr = new FileReader(f); BufferedReader bf = new BufferedReader(fr)) {
-            alumnosStr = bf.readLine();
-            asignaturasStr = bf.readLine();
+        try(FileReader fr = new FileReader(f); BufferedReader br = new BufferedReader(fr)) {
+            alumnos = br.readLine().split(",");
+            asignaturas = br.readLine().split(",");
 
-            alumnos = alumnosStr.split(",");
-            asignaturas = asignaturasStr.split(",");
+            notas = new int[asignaturas.length][];
 
-            notas = new String[asignaturas.length][alumnos.length];
-
-            while ((linea = bf.readLine()) != null) {
-                notas[i] = linea.split(",");
-                i++;
+            for (int i = 0; i < notas.length; i++) {
+                linea = br.readLine();
+                fila = linea.split(",");
+                notas[i] = recibirFila(fila);
             }
-            
+
         } catch (IOException e) {
             System.out.println("Ha ocurrido un error relacionado con el fichero.");
             System.exit(1);
@@ -54,10 +51,19 @@ public class FicheroNotasAlumnos {
 
         System.out.println(Arrays.toString(alumnos));
         System.out.println(Arrays.toString(asignaturas));
-        for (int j = 0; j < notas.length; j++) {
-            System.out.println(Arrays.toString(notas[j]));
+        for (int i = 0; i < notas.length; i++) {
+            System.out.println(Arrays.toString(notas[i]));
         }
         
+    }
 
+    static int[] recibirFila(String[] fila){
+        int[] arr = new int[fila.length];
+        
+        for (int i = 0; i < fila.length; i++) {
+            arr[i] = Integer.parseInt(fila[i]);
+        }
+
+        return arr;
     }
 }
