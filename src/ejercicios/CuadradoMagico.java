@@ -27,7 +27,7 @@ public class CuadradoMagico {
                 numCuadrados = Integer.parseInt(br.readLine());
                 for (int i = 0; i < numCuadrados; i++) {
                     filasYcolumnas = Integer.parseInt(br.readLine());
-                    arr = new int[filasYcolumnas][filasYcolumnas];
+                    arr = new int[filasYcolumnas][];
 
                     for (int j = 0; j < arr.length; j++) {
                         arr[j] = recibirFila(br.readLine().split(","));

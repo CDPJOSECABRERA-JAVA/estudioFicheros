@@ -39,9 +39,9 @@ public class Main {
         
         //FicheroNotasAlumnos ficheroNotasAlumnos = new FicheroNotasAlumnos();
 
-        CuadradoMagico cuadradoMagico = new CuadradoMagico();
+        //CuadradoMagico cuadradoMagico = new CuadradoMagico();
 
-
+        Notas notas = new Notas();
 
     }
 }
