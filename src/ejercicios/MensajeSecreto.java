@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Arrays;
 
 public class MensajeSecreto {
     public MensajeSecreto(){
@@ -35,26 +36,30 @@ public class MensajeSecreto {
         int relatividad = 0;
         String fraseDesencriptada = "";
         String palabra = "";
+
+        int[] palabrasInt = new int[0];
  
         // DESENCRIPTACION DEL FICHERO
         try (FileReader fr = new FileReader(archivo); BufferedReader br = new BufferedReader(fr)) {
             
             numeroDePalabras = Integer.parseInt(br.readLine());
-
             for (int i = 0; i < numeroDePalabras; i++) {
+                
                 longitudPalabra = Integer.parseInt(br.readLine());
+                palabrasInt = new int[longitudPalabra];
+
                 for (int j = 0; j < longitudPalabra; j++) {
                     posPalabra = Integer.parseInt(br.readLine());
                     relatividad = Integer.parseInt(br.readLine());
-                    
-                    if (relatividad%2 == 0) palabra += alfabeto[posPalabra-1];
-                    else palabra += alfabeto[alfabeto.length - posPalabra];
-                }
-                    fraseDesencriptada += palabra;
-                    fraseDesencriptada += " ";
 
-                    palabra = ""; 
+                    if (relatividad%2 == 0) palabrasInt[j] = posPalabra-1;
+                    else palabrasInt[j] = alfabeto.length - posPalabra;
+                }
+                
+                System.out.println(desencriptar(alfabeto, palabrasInt));
+                System.out.println(Arrays.toString(palabrasInt));
             }
+        
             
             
         } catch (IOException e) {
@@ -66,6 +71,15 @@ public class MensajeSecreto {
         System.out.println(fraseDesencriptada);
     }
 
+    public static String desencriptar(String[] alfabeto, int[] palabraInt){
+        String palabra = "";
+
+        for (int i = 0; i < palabraInt.length; i++) {
+            palabra += alfabeto[palabraInt[i]];
+        }
+
+        return palabra;
+    }
 
     /* 
     public static void escribirFichero(int[] numsEntrada, File archivo){

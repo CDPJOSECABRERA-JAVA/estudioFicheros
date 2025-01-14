@@ -41,7 +41,9 @@ public class Main {
 
         //CuadradoMagico cuadradoMagico = new CuadradoMagico();
 
-        Notas notas = new Notas();
+        //Notas notas = new Notas();
+
+        MensajeSecreto mensajeSecreto = new MensajeSecreto();
 
     }
 }
