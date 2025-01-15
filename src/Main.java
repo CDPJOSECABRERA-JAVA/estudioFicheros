@@ -43,7 +43,8 @@ public class Main {
 
         //Notas notas = new Notas();
 
-        MensajeSecreto mensajeSecreto = new MensajeSecreto();
+        //MensajeSecreto mensajeSecreto = new MensajeSecreto();
 
+        MaquinaGolosinas maquinaGolosinas = new MaquinaGolosinas();
     }
 }
