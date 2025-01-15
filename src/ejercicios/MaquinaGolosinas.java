@@ -110,17 +110,22 @@ public class MaquinaGolosinas {
                 System.out.println("Introduce el código:");
                 codStr = sc.nextLine();
 
-                filaYcolumna = arrToInt(codStr.split(""));
-                f = filaYcolumna[0]; c = filaYcolumna[1];
-               
-                if (stock[f][c] > 0) {
-                    System.out.println("Has comprado: " + golosinas[f][c]);
-                    precio = precios[f][c];
-                    stock[f][c]--;
-                    ventas[f][c]++;
-                }else System.out.println("No quedan mas unidades de este producto.\nVolviendo al menú.");
+                if (codStr.length() > 2) {
+                    System.out.println("Error en el código introducido, inténtelo de nuevo.");
+                } else {
+                    filaYcolumna = arrToInt(codStr.split(""));
+                    f = filaYcolumna[0]; c = filaYcolumna[1];
                 
-                break;
+                    if (stock[f][c] > 0) {
+                        System.out.println("Has comprado: " + golosinas[f][c]);
+                        precio = precios[f][c];
+                        stock[f][c]--;
+                        ventas[f][c]++;
+                    }else System.out.println("No quedan mas unidades de este producto.\nVolviendo al menú.");
+                    
+                    break;
+                }
+                    
             } catch (Exception e) {
                 System.out.println("Error en el código introducido, inténtelo de nuevo.");
             }
@@ -129,6 +134,19 @@ public class MaquinaGolosinas {
         return precio;
     }
 
+    static void rellenarGolosina(String[][] golosinas, int[][] precios){
+        Scanner sc = new Scanner(System.in);
+        String pass = "MaquinaExpendedora2017";
+        System.out.println("Contraseña:");
+        String userPass = sc.nextLine();
+
+        if (!pass.equals(userPass)){
+            System.out.println("Contraseña incorrecta.");
+            return;
+        }
+        
+        System.out.println();
+    }
     /* M E T O D O S  D E  C O N V E R S I O N */
     static double[] arrToDouble(String[] strArr){
         double[] arr = new double[strArr.length];
@@ -159,8 +177,6 @@ public class MaquinaGolosinas {
             """
             );
     }
-    static double anadirVenta(double[][] precios, int f, int c){
-        return precios[f][c];
-    }
+
 }
 
