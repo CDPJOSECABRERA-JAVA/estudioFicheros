@@ -69,8 +69,7 @@ public class MaquinaGolosinas {
                     rellenarGolosina(golosinas, stock);
                     break;
                 case 4:
-                    System.out.println(totalVentas);
-                    System.out.println("Adio");
+                    ventasTotales(ventas, golosinas, totalVentas);
                     encendido = false;
                     break;
                 default:
@@ -149,6 +148,17 @@ public class MaquinaGolosinas {
                 break;
             }
         }
+    }
+    
+    static void ventasTotales(int[][] ventas, String[][] golosinas, double totalVentas){
+        System.out.println("Golosinas vendidas:");
+        
+        for (int i = 0; i < golosinas.length; i++) {
+            for (int j = 0; j < golosinas.length; j++) {
+                if(ventas[i][j] != 0) System.out.println(ventas[i][j] + " " + golosinas[i][j]);
+            }
+        }
+        System.out.println("VENTAS TOTALES: " + totalVentas);
     }
     /* M E T O D O S  D E  C O N V E R S I O N */
     static double[] arrToDouble(String[] strArr){
