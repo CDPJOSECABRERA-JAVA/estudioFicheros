@@ -54,6 +54,7 @@ public class MaquinaGolosinas {
         Scanner sc = new Scanner(System.in);
         double totalVentas = 0;
         boolean encendido = true;
+        
         while (encendido) {
             mostrarMenu();
 
@@ -65,7 +66,7 @@ public class MaquinaGolosinas {
                     mostrarGolosinas(golosinas, precios);
                     break;
                 case 3:
-
+                    rellenarGolosina(golosinas, stock);
                     break;
                 case 4:
                     System.out.println(totalVentas);
@@ -97,55 +98,57 @@ public class MaquinaGolosinas {
     }
 
     static double pedirGolosina(String[][] golosinas, double[][] precios, int[][] stock, int[][] ventas){
-        
-        Scanner sc;
-        String codStr;
+ 
         int[] filaYcolumna = new int[2];
         int f, c;
         double precio = 0;
-        
-        do {
-            try {
-                sc = new Scanner(System.in);
-                System.out.println("Introduce el código:");
-                codStr = sc.nextLine();
 
-                if (codStr.length() > 2) {
-                    System.out.println("Error en el código introducido, inténtelo de nuevo.");
-                } else {
-                    filaYcolumna = arrToInt(codStr.split(""));
-                    f = filaYcolumna[0]; c = filaYcolumna[1];
-                
-                    if (stock[f][c] > 0) {
-                        System.out.println("Has comprado: " + golosinas[f][c]);
-                        precio = precios[f][c];
-                        stock[f][c]--;
-                        ventas[f][c]++;
-                    }else System.out.println("No quedan mas unidades de este producto.\nVolviendo al menú.");
-                    
-                    break;
-                }
-                    
-            } catch (Exception e) {
-                System.out.println("Error en el código introducido, inténtelo de nuevo.");
-            }
-        } while (true);
+        filaYcolumna = pedirCodigoProducto(stock);
+        f = filaYcolumna[0];
+        c = filaYcolumna[1];
+
+        if (stock[f][c] == 0) {
+            System.out.println("No quedan mas unidades de este producto.");
+            return precio;
+        }
+
+        System.out.println("Has comprado: " + golosinas[f][c]);
+        precio = precios[f][c];
+        stock[f][c]--;
+        ventas[f][c]++;
 
         return precio;
     }
 
-    static void rellenarGolosina(String[][] golosinas, int[][] precios){
-        Scanner sc = new Scanner(System.in);
+    static void rellenarGolosina(String[][] golosinas, int[][] stock){      
         String pass = "MaquinaExpendedora2017";
-        System.out.println("Contraseña:");
-        String userPass = sc.nextLine();
-
-        if (!pass.equals(userPass)){
+        if (!pedirContrasena(pass)) {
             System.out.println("Contraseña incorrecta.");
             return;
         }
-        
-        System.out.println();
+
+        while (true) {
+            System.out.println("Código del producto a rellenar:");
+            int[] filaYcolumna = pedirCodigoProducto(stock);
+            int cantidad = 0;
+            int f = filaYcolumna[0]; int c = filaYcolumna[1];
+
+            System.out.println("Has seleccionado el producto: " + golosinas[f][c]);
+            System.out.println("¿Cuántas unidades quieres añadir?");
+            cantidad = pedirCantidad();
+
+            stock[f][c] += cantidad;
+            System.out.printf("'%s' ha pasado de tener %d a %d unidades.",  golosinas[f][c], (stock[f][c]-cantidad), stock[f][c]);
+
+            System.out.println("¿Quieres añadir mas unidades de otro producto?");
+            System.out.println("1. Si.\n2. No.");
+            int seguir = pedirCantidad();
+
+            if (seguir != 1) {
+                System.out.println("Saliendo...");
+                break;
+            }
+        }
     }
     /* M E T O D O S  D E  C O N V E R S I O N */
     static double[] arrToDouble(String[] strArr){
@@ -176,6 +179,57 @@ public class MaquinaGolosinas {
             *******************************
             """
             );
+    }
+    static boolean pedirContrasena(String contrasena){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Contraseña:");
+        String userPass = sc.nextLine();
+
+        if (contrasena.equals(userPass)) return true;
+        else return false;
+    }
+    static int[] pedirCodigoProducto(int[][] stock){
+        
+        Scanner sc;
+        String codStr;
+        int[] filaYcolumna = new int[2];
+        int f, c;
+
+        do {
+            try {
+                sc = new Scanner(System.in);
+                System.out.println("Introduce el código del producto:");
+                codStr = sc.nextLine();
+
+                if (codStr.length() != 2) {
+                    System.out.println("Error en el código introducido, inténtelo de nuevo.");
+                } else {
+                    filaYcolumna = arrToInt(codStr.split(""));
+                    f = filaYcolumna[0]; c = filaYcolumna[1];
+
+                    stock[f][c] = stock[f][c];
+
+                    break;
+                }
+        
+        }catch (Exception e){
+            System.out.println("Ha ocurrido un error.");
+        }
+            
+        }while (true);
+        return filaYcolumna;
+    }
+    static int pedirCantidad(){
+        do {
+            try {
+                Scanner sc = new Scanner(System.in);
+                int n = sc.nextInt();
+                return n;
+            } catch (Exception e) {
+                System.out.println("Ha ocurrido un error, intentalo de nuevo.");
+            }
+        } while (true);
+
     }
 
 }
