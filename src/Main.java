@@ -45,6 +45,8 @@ public class Main {
 
         //MensajeSecreto mensajeSecreto = new MensajeSecreto();
 
-        MaquinaGolosinas maquinaGolosinas = new MaquinaGolosinas();
+        //MaquinaGolosinas maquinaGolosinas = new MaquinaGolosinas();
+
+        Desencriptar encriptar = new Desencriptar("elo");
     }
 }
